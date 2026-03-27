@@ -1,0 +1,378 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NovaPhone X - The Future is in Your Hands</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .hero {
+                min-height: calc(100vh - var(--nav-h));
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                gap: 4rem;
+                max-width: var(--max-w);
+                margin: 0 auto;
+            }
+
+            .hero-text { padding: 4rem 0; }
+
+            .hero-eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.6rem;
+                font-size: 0.75rem;
+                font-weight: 500;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--text-muted);
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-eyebrow::before {
+                content: '';
+                width: 24px;
+                height: 1px;
+                background: var(--accent);
+            }
+
+            .hero h1 { margin-bottom: 1.5rem; }
+
+            .hero h1 em {
+                font-style: italic;
+                color: var(--accent);
+            }
+
+            .hero-sub {
+                font-size: 1.05rem;
+                color: var(--text-muted);
+                line-height: 1.8;
+                margin-bottom: 2.5rem;
+                max-width: 420px;
+            }
+
+            .hero-cta{
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .hero-visual {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+
+            .hero-glow {
+                position: absolute;
+                width: 400px;
+                height: 400px;
+                background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+                border-radius: 50%;
+                pointer-events: none;
+            }
+
+            .hero-img {
+                width: 100%;
+                max-width: 380px;
+                height: auto;
+                border-radius: 24px;
+                position: relative;
+                z-index: 1;
+                filter: drop-shadow(0 30px 60px rgba(0,229,255,0.15));
+                animation: float 6s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-12px); }
+            }
+
+            .specs-strip {
+                border-top: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+                padding: 3rem clamp(1.5rem, 5vw, 3rem);
+                background: var(--bg-2);
+            }
+
+            .specs-inner {
+                max-width: var(--max-w);
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .spec-item { padding: 0 1rem; }
+
+            .spec-num {
+                font-family: var(--serif);
+                font-size: 2.4rem;
+                color: var(--accent);
+                line-height: 1;
+                margin-bottom: 0.4rem;
+            }
+
+            .spec-label {
+                font-size: 0.78rem;
+                font-weight: 500;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--text-muted);
+            }
+
+            .feature-preview {
+                max-width: var(--max-w);
+                margin: 0 auto;
+            }
+
+            .section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-header a {
+                font-size: 0.82rem;
+                color: var(--accent);
+                text-decoration: none;
+                letter-spacing: 0.06em;
+                transition: opacity 0.2s;
+            }
+
+            .section-header a:hover { opacity: 0.7; }
+
+            .feature-preview-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .fp-card {
+                background: var(--bg-2);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                overflow: hidden;
+                transition: border-color 0.3s, transform 0.3s;
+            }
+
+            .fp-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-4px);
+            }
+
+            .fp-card-img {
+                width: 100%;
+                aspect-ratio: 16/9;
+                background: var(--bg-3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            .fp-card-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0.85;
+                transition: opacity 0.3s, transform 0.3s;
+            }
+
+            .fp-card:hover .fp-card-img img {
+                opacity: 1;
+                transform: scale(1.03);
+            }
+
+            .fg-img-placeholder {
+                font-size: 0.75rem;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--text-muted);
+            }
+
+            .fp-card-body {
+                padding: 1.75rem;
+            }
+
+            .fp-card-body h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .fp-card-body p {
+                font-size: 0.88rem;
+                color: var(--text-muted);
+                line-height: 1.7;
+            }
+
+            .cta-banner {
+                background: var(--bg-2);
+                border-top: 1px solid var(--border);
+                padding: 6rem clamp(1.5rem, 5vw, 3rem);
+                text-align: center;
+            }
+
+            .cta-banner h2 { margin-bottom: 1rem; }
+            .cta-banner h2 em { font-style: italic; color: var(--accent); }
+
+            .cta-banner p {
+                color: var(--text-muted);
+                font-size: 1rem;
+                margin-bottom: 2.5rem;
+                max-width: 440px;
+                margin-left: auto;
+                margin-right: auto;
+                line-height: 1.75;
+            }
+
+            @media (max-width: 768px) {
+                .hero {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                    gap: 2rem;
+                }
+
+                .hero-text { padding: 3rem 0 0; }
+                .hero-sub { max-width: 100%; }
+                .hero-cta { justify-content: center; }
+                .hero-eyebrow { justify-content: center; }
+                .specs-inner { grid-template-columns: repeat(2, 1fr); }
+                .feature-preview { grid-template-columns: 1fr; }
+                .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            }
+        </style>
+    </head>
+
+    <body>
+        
+        <nav class="navbar">
+            <a href="index.html" class="logo"> 
+                <svg viewBox="0 0 174 38" height="38" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                    <rect x="0" y="0" width="38" height="38" rx="9" fill="#C9A96E"/>
+                    <line x1="10" y1="8" x2="10" y2="30" stroke="#0a0a0e" stroke-width="5" stroke-linecap="round"/>
+                    <line x1="28" y1="8" x2="28" y2="30" stroke="#0a0a0e" stroke-width="5" stroke-linecap="round"/>
+                    <line x1="10" y1="8" x2="28" y2="30" stroke="#0a0a0e" stroke-width="3" stroke-linecap="round"/>
+                    <text x="50" y="22" font-family="Cormorant Garamond,Georgia,serif" font-size="22" font-weight="400" letter-spacing="5" fill="#EDE8D8">NOVA</text>
+                    <line x1="50" y1="27" x2="172" y2="27" stroke="#C9A96E" stroke-width="0.6" opacity="0.8"/>
+                    <text x="50" y="36" font-family="Courier New,monospace" font-size="9" letter-spacing="4" fill="#C9A96E" opacity="0.85">PHONE  X</text>
+                </svg>
+            </a>
+            <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="buy.html">Buy</a></li>
+            </ul>
+        </nav>
+
+        <section style="padding: 0 clamp(1.5rem, 5vw, 3rem);">
+            <div class="hero">
+                <div class="hero-text reveal">
+                    <span class="hero-eyebrow">Introducing NovaPhone X</span>
+                    <h1>The future is in <em>your hands.</em></h1>
+                    <p class="hero-sub">Power. Simplicity. Elegance. Engineered for those who demand more from every moment.</p>
+                    <div class="hero-cta">
+                        <a href="buy.html" class="btn btn-primary">Pre-Order Now</a>
+                        <a href="features.html" class="btn btn-outline">Explore Features</a>
+                    </div>
+                </div>
+                <div class="hero-visual reveal">
+                    <div class="hero-glow"></div>
+                    <img src="images/hero1.PNG" alt="NovaPhone X" class="hero-img">
+                </div>
+            </div>
+        </section>
+
+        <div class="specs-strip">
+            <div class="specs-inner reveal-stagger">
+                <div class="spec-item reveal">
+                    <div class="spec-num">3nm</div>
+                    <div class="spec-label">AI Processor</div>
+                </div>
+                <div class="spec-item reveal">
+                    <div class="spec-num">200MP</div>
+                    <div class="spec-label">Camera Systems</div>
+                </div>
+                <div class="spec-item reveal">
+                    <div class="spec-num">72hr</div>
+                    <div class="spec-label">Battery Life</div>
+                </div>
+                <div class="spec-item reveal">
+                    <div class="spec-num">6.7</div>
+                    <div class="spec-label">Promotion Display</div>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <div class="feature-preview">
+                <div class="section-header reveal">
+                    <div>
+                        <span class="label">What's Inside</span>
+                        <h2>Built Different.</h2>
+                    </div>
+                    <a href="features.html">See all features →</a>
+                </div>
+                <div class="feature-preview-grid reveal-stagger">
+                    <div class="fp-card reveal">
+                        <div class="fp-card-img">
+                            <img src="images/feature1.PNG" alt="Performance" onerror="this.parentElement.innerHTML='<span class=fp-img-placeholder>Performance</span>'">
+                        </div>
+                        <div class="fp-card-body">
+                            <h3>Blazing Speed</h3>
+                            <p>Powered by next-generation AI processing. Every task, every app, every moment - faster than you've ever experienced.</p>
+                        </div>
+                    </div>
+                    <div class="fp-card reveal">
+                        <div class="fp-card-img">
+                            <img src="images/feature2.PNG" alt="Design" onerror="this.parentElement.innerHTML='<span class=fp-img-placeholder>Design</span>'">
+                        </div>
+                        <div class="fp-card-body">
+                            <h3>Premium Design</h3>
+                            <p>Crafted for aerospace-grade aluminum. Every edge considered. Every surface intentional. This is what premium feels like.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-banner">
+            <div class="reveal">
+                <span class="label">Limited Release</span>
+                <h2>Ready to experience <em>the future?</em></h2>
+                <p>Pre-orders are open now. Be among the first to hold the most advanced smartphone ever built.</p>
+                <a href="buy.html" class="btn btn-primary">Pre-order NovaPhone X</a>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-inner">
+                <a href="index.html" class="footer-logo">
+                    <svg viewBox="0 0 148 32" height="32" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                        <rect x="0" y="0" width="32" height="32" rx="8" fill="#C9A96E"/>
+                        <line x1="8" y1="7" x2="8" y2="25" stroke="#0a0a0e" stroke-width="4.5" stroke-linecap="round"/>
+                        <line x1="24" y1="7" x2="24" y2="25" stroke="#0a0a0e" stroke-width="4.5" stroke-linecap="round"/>
+                        <line x1="8" y1="7" x2="24" y2="25" stroke="#0a0a0e" stroke-width="2.5" stroke-linecap="round"/>
+                        <text x="42" y="19" font-family="Cormorant Garamond,Georgia,serif" font-size="18" font-weight="400" letter-spacing="4" fill="#EDE8D8">NOVA</text>
+                        <line x1="42" y1="23" x2="145" y2="23" stroke="#C9A96E" stroke-width="0.5" opacity="0.7"/>
+                        <text x="42" y="31" font-family="Courier New,monospace" font-size="8" letter-spacing="3" fill="#C9A96E" opacity="0.8">PHONE  X</text>
+                    </svg>
+                </a>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</li>
+                    <li><a href="buy.html">Buy</a></li>
+                </ul>
+                <span class="footer-copy">© 2026 NovaPhone X. All rights reserved.</span>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
