@@ -1,0 +1,356 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Features - NovaPhone X</title>
+        <link rel="stylesheet" href="style.css">
+
+        <style>
+
+            .page-hero {
+                padding: 5rem clamp(1.5rem, 5vw, 3rem) 4rem;
+                border-bottom: 1px solid var(--border);
+                text-align: center;
+            }
+
+            .page-hero-inner {
+                max-width: 640px;
+                margin: 0 auto;
+            }
+
+            .page-hero h1 { margin-bottom: 1.25rem; }
+            .page-hero h2 { font-style: italic; color: var(--accent); }
+
+            .page-hero p {
+                font-size: 1.05rem;
+                color: var(--text-muted);
+                line-height: 1.8;
+            }
+
+            .features-section {
+                max-width: var(--max-w);
+                margin: 0 auto;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .feature-card {
+                background: var(--bg-2);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                overflow: hidden;
+                transition: border-color 0.3s, transform 0.3s; 
+            }
+
+            .feature-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-4px);
+            }
+
+            .feature-card.featured {
+                grid-column: 1/ -1;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .card-img {
+                width: 100%;
+                aspect-ratio: 16/9;
+                background: var(--bg-3);
+                overflow: hidden;
+            }
+
+            .feature-card.featured .card-img {
+                aspect-ratio: auto;
+                min-height: 280px;
+            }
+
+            .card-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0.85;
+                transition: opacity 0.3s, transform 0.4s;
+            }
+
+            .feature-card:hover .card-img img {
+                opacity: 1;
+                transform: scale(1.04);
+            }
+
+            .img-placeholder {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.72rem;
+                font-weight: 600;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--text-muted);
+                background: var(--bg-3);
+            }
+
+            .card-body {
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .card-body .label { margin-bottom: 0.75rem; }
+
+            .card-body h3 {
+                margin-bottom: 0.75rem;
+            }
+
+            .card-body .desc {
+                font-size: 0.9rem;
+                color: var(--text-muted);
+                line-height: 1.75;
+                margin-bottom: 1.5rem;
+            }
+
+            .toggle-detail {
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.4s ease;
+            }
+
+            .toggle-detail.open {
+                max-height: 200px;
+            }
+
+            .toggle-detail p {
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                line-height: 1.7;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border);
+                margin-bottom: 0;
+            }
+
+            .toggle-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                background: none;
+                border: none;
+                color: var(--accent);
+                font-family: var(--sans);
+                font-size: 0.82rem;
+                font-weight: 500;
+                letter-spacing: 0.06em;
+                cursor: pointer;
+                padding: 0;
+                transition: opacity 0.2s;
+            }
+
+            .toggle-btn:hover { opacity: 0.7; }
+
+            .toggle-btn .arrow {
+                transition: transform 0.3s;
+                display: inline-block;
+            }
+
+            .toggle-btn.active .arrow { transform: rotate(180deg); }
+
+            .specs-section {
+                border-top: 1px solid var(--border);
+                background: var(--bg-2);
+            }
+
+            .specs-inner {
+                max-width: var(--max-w);
+                margin: 0 auto;
+            }
+
+            .specs-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 2.5rem;
+            }
+
+            .specs-table tr {
+                border-bottom: 1px solid var(--border);
+                transition: background 0.2s;
+            }
+
+            .specs-table tr:hover { background: var(--bg-3); }
+            .specs-table tr:last-child { border-bottom: none; }
+
+            .specs-table td {
+                padding: 1.1rem 0;
+                font-size: 0.9rem;
+            }
+
+            .specs-table td:first-child {
+                color: var(--text-muted);
+                font-size: 0.78rem;
+                font-weight: 500;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                width: 35%;
+            }
+
+            .specs-table td:last-child {
+                color: var(--text);
+                font-weight: 400;
+            }
+
+            @media (max-width: 768px) {
+                .features-grid { grid-template-columns: 1fr; }
+                .feature-card.featured { grid-template-columns: 1fr; }
+                .feature-card.featured .card-img { min-height: 200px; aspect-ratio: 16/9; }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 174 38" height="38" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                    <rect x="0" y="0" width="38" height="38" rx="9" fill="#C9A96E"/>
+                    <line x1="10" y1="8" x2="10" y2="30" stroke="#0a0a0e" stroke-width="5" stroke-linecap="round"/>
+                    <line x1="28" y1="8" x2="28" y2="30" stroke="#0a0a0e" stroke-width="5" stroke-linecap="round"/>
+                    <line x1="10" y1="8" x2="28" y2="30" stroke="#0a0a0e" stroke-width="3" stroke-linecap="round"/>
+                    <text x="50" y="22" font-family="Cormorant Garamond,Georgia,serif" font-size="22" font-weight="400" letter-spacing="5" fill="#EDE8D8">NOVA</text>
+                    <line x1="50" y1="27" x2="172" y2="27" stroke="#C9A96E" stroke-width="0.6" opacity="0.8"/>
+                    <text x="50" y="36" font-family="Courier New,monospace" font-size="9" letter-spacing="4" fill="#C9A96E" opacity="0.85">PHONE  X</text>
+                </svg>
+            </a>
+            <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html" class="active">Features</a></li>
+                <li><a href="buy.html">Buy</a></li>
+            </ul>
+        </nav>
+
+        <div class="page-hero">
+            <div class="page-hero-inner reveal">
+                <span class="label">Performance & Design</span>
+                <h1>Built for the <em>extraordinary.</em></h1>
+                <p>Every component of the NovaPhone X was engineered from the ground up to set a new standard - in speed, design and intelligence.</p>
+            </div>
+        </div>
+
+        <section>
+            <div class="features-section">
+                <div class="features-grid reveal-stagger">
+                    <div class="feature-card featured reveal">
+                        <div class="card-img">
+                            <img src="images/feature1.PNG" alt="Performance" onerror="this.parentElement.innerHTML='<div class=img-placeholder>Performance</div>'">
+                        </div>
+                        <div class="card-body">
+                            <span class="label">Processing</span>
+                            <h3>Blazing Speed</h3>
+                            <p class="desc">
+                                Powered by our next-generation 3nm AI processor - the most advanced chip ever put in a smartphone. Handles 
+                                anything you throw at it without breaking a sweat. 
+                            </p>
+                            <button class="toggle-btn" data-target="detail1">Learn More <span class="arrow">↓</span></button>
+                            <div class="toggle-detail" id="detail1">
+                                <p>
+                                    The Nova A1 chip features a dedicated neural engine that processes AI tasks up to 40x faster than the previous generation.
+                                    From real-time photo enhancement to on-device language translation - it all happens instantly, locally, privately.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-card reveal">
+                        <div class="card-img">
+                            <img src="images/feature2.PNG" alt="Design" onerror="this.parentElement.innerHTML='<div class=img-placeholder>Design</div>'">
+                        </div>
+                        <div class="card-body">
+                            <span class="label">Build Quality</span>
+                            <h3>Premium Design</h3>
+                            <p class="desc">
+                                Aerospace-grade aluminum frame. Ceramic back. IP68 water resistance. This is what happens
+                                when engineering meets obsession.
+                            </p>
+                            <button class="toggle-btn" data-target="detail2">Learn More<span class="arrow">↓</span></button>
+                            <div class="toggle-detail" id="detail2">
+                                <p>
+                                    Milled from a single block of 7000-series aluminum, the NovaPhone X chassis is 40x stronger and 20% lighter
+                                    than traditional smartphone frames. Available in Midnight Black, Polar White and Deep Space Titanium.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-card reveal">
+                        <div class="card-img">
+                            <img src="images/camera-closeup.png" alt="Camera" onerror="this.parentElement.innerHTML='<div class=img-placeholder>Design</div>'">
+                        </div>
+                        <div class="card-body">
+                            <span class="label">Imaging</span>
+                            <h3>200MP Camera System</h3>
+                            <p class="desc">
+                                Three lenses. One extraordinary system. Capture life in detail so sharp, you'll see things you've never noticed before.
+                            </p>
+                            <button class="toggle-btn" data-target="detail3">Learn More<span class="arrow">↓</span></button>
+                            <div class="toggle-detail" id="detail3">
+                                <p>
+                                    A 200MP main sensor, a 48MP ultra-wide, and a 12MP periscope telephoto with 10x optical zoom.
+                                    AI-assisted low light, real-time subject separation, and 8K video at 60fps.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="specs-section">
+            <div class="specs-inner reveal">
+                <span class="label">Full Specifications</span>
+                <h2>Every detail.</h2>
+                <table class="specs-table">
+                  <tr><td>Display</td><td>6.7" ProMotion OLED, 2796 x 1290, 120Hz</td></tr>
+                  <tr><td>Processor</td><td>Nova A1 3nm - 8-core CPU, 6-core GPU</td></tr>
+                  <tr><td>Storage</td><td>256GB / 512GB / 1TB</td></tr>
+                  <tr><td>RAM</td><td>12GB unified memory</td></tr>
+                  <tr><td>Battery</td><td>5200mAh - up to 72 hours usage</td></tr>
+                  <tr><td>Charging</td><td>65W wired, 30W wireless, 5W reverse wireless</td></tr>
+                  <tr><td>Main Camera</td><td>200MP f/1.7, OIS, laser autofocus</td></tr>
+                  <tr><td>Water Resistance</td><td>IP68 - 6m for 30 minutes</td></tr>
+                  <tr><td>Connectivity</td><td>5G, Wi-Fi 7, Bluetooth 5.4, NFC, UWB</td></tr>
+                  <tr><td>OS</td><td>NovaOS 1.0 - built on Android 15</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-inner">
+                <a href="index.html" class="footer-logo">
+                    <svg viewBox="0 0 148 32" height="32" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                        <rect x="0" y="0" width="32" height="32" rx="8" fill="#C9A96E"/>
+                        <line x1="8" y1="7" x2="8" y2="25" stroke="#0a0a0e" stroke-width="4.5" stroke-linecap="round"/>
+                        <line x1="24" y1="7" x2="24" y2="25" stroke="#0a0a0e" stroke-width="4.5" stroke-linecap="round"/>
+                        <line x1="8" y1="7" x2="24" y2="25" stroke="#0a0a0e" stroke-width="2.5" stroke-linecap="round"/>
+                        <text x="42" y="19" font-family="Cormorant Garamond,Georgia,serif" font-size="18" font-weight="400" letter-spacing="4" fill="#EDE8D8">NOVA</text>
+                        <line x1="42" y1="23" x2="145" y2="23" stroke="#C9A96E" stroke-width="0.5" opacity="0.7"/>
+                        <text x="42" y="31" font-family="Courier New,monospace" font-size="8" letter-spacing="3" fill="#C9A96E" opacity="0.8">PHONE  X</text>
+                    </svg>
+                </a>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="buy.html">Buy</a></li>
+                </ul>
+                <span class="footer-copy">© 2026 NovaPhone X. All rights reserved.</span>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
